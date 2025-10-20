@@ -1,0 +1,11 @@
+# NGINX Ingress Controller Installation
+# Apply this after your GKE cluster is created
+
+# 1. Install NGINX Ingress Controller
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-nginx
+---
+# This will be replaced by Helm install command
+# See the setup script for installation instructions

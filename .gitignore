@@ -1,0 +1,86 @@
+utility-grin*
+# GCP service account key --- IGNORE ---
+
+# =====================
+# Terraform
+# =====================
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfplan
+plan.out
+.terraform.lock.hcl # optional to commit; remove if you want to version it
+
+# Local variable / override files (never commit secrets)
+terraform.tfvars
+*.auto.tfvars
+*.tfvars.json
+
+# =====================
+# Kubernetes / Kubeconfig / Credentials
+# =====================
+kubeconfig
+*.kubeconfig
+.kube/
+
+# =====================
+# Helm
+# =====================
+charts/**/tmp/
+*.tgz
+
+# =====================
+# ArgoCD generated secrets (only declare via manifests)
+# =====================
+argocd-secret.yaml
+
+# =====================
+# Python (if any helper scripts)
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+
+# =====================
+# Node / JS (if future tooling added)
+# =====================
+node_modules/
+dist/
+build/
+*.log
+
+# =====================
+# macOS / Editor / IDE
+# =====================
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.orig
+
+# =====================
+# Shell history / local env
+# =====================
+.env
+.env.*
+*.secret
+*.key
+id_rsa
+id_ed25519
+*.pem
+
+# =====================
+# Misc
+# =====================
+*.bak
+*.tmp
+*.retry
+*.out
+*.log
+
+# Allowlist (un-ignore) example if you need specific JSON tracked:
+# !example-config.json

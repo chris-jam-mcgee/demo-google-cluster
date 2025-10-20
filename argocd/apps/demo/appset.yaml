@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-environments
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        cluster: in-cluster
+        namespace: demo-dev
+        revision: main
+      - env: qa
+        cluster: in-cluster
+        namespace: demo-qa
+        revision: main
+  template:
+    metadata:
+      name: demo-{{env}}
+      labels:
+        app.kubernetes.io/name: demo
+        app.kubernetes.io/managed-by: argocd
+        environment: '{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/chris-jam-mcgee/demo-google-cluster.git
+        path: "argocd/apps/demo/{{env}}"
+        targetRevision: '{{revision}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true

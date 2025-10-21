@@ -21,6 +21,14 @@ This project uses a modular Terraform structure to manage Google Kubernetes Engi
 │       ├── variables.tf      # Non-production variables
 │       ├── outputs.tf        # Non-production outputs
 │       └── terraform.tfvars  # Non-production variable values
+├── argocd/
+│   ├── apps/
+│   │   ├── demo/
+│   │   │   ├── appset.yaml        # ApplicationSet generating dev & qa Applications
+│   │   │   ├── dev/               # Dev environment manifests (kustomize or raw YAML)
+│   │   │   └── qa/                # QA environment manifests
+│   │   └── (other app folders...) # Additional applications
+│   └── setup-argocd.sh            # Script to install NGINX ingress, cert-manager, ArgoCD
 ```
 
 ## Usage
